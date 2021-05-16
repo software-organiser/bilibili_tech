@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>传递url</title>
+</head>
+<body>
+<input type="text" id="url">
+<button onclick="Submit()">提交</button>
+{% verbatim myblock %}
+<div id="test1"></div>
+<div id="test2"></div>
+{% endverbatim myblock %}
+</body>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+function Submit(){
+        var bv = $("#url").val();
+        $.ajax({
+            url:'/catch',
+            type:'post',
+            data:{'BV':bv},
+
+            success: function(res) {
+            console.log(typeof(res))
+            $("#test1").text(res.info)
+            $("#test2").text(res.emo_cal)
+            }
+        });
+      }
+      </script>
+</html>
